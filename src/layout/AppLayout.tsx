@@ -5,11 +5,31 @@ import './AppLayout.less'
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
-class AppLayout extends Component {
 
-    state = {
-        collapsed: false,
-    };
+
+
+interface AppLayoutState {
+    collapsed : boolean,
+    content : any,
+}
+
+
+class AppLayout extends Component <{}, AppLayoutState> {
+
+
+
+    constructor(props: {}) {
+        super(props);
+        this.state = {
+            collapsed : false,
+            content: <button>test</button>,
+        };
+    }
+
+    // state = {
+    //     collapsed: false,
+    //     content: <button>test</button>
+    // };
 
     onCollapse = (collapsed: any) => {
         console.log(collapsed);
@@ -34,9 +54,9 @@ class AppLayout extends Component {
                             key="sub1"
                             title={
                                 <span>
-                  <Icon type="user"/>
-                  <span>User</span>
-                </span>
+                                  <Icon type="user"/>
+                                  <span>User</span>
+                                </span>
                             }
                         >
                             <Menu.Item key="3">Tom</Menu.Item>
@@ -68,7 +88,8 @@ class AppLayout extends Component {
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
-                        <div style={{padding: 24, background: '#fff', minHeight: 360}}>Bill is a cat.</div>
+                        {/*<div style={{padding: 24, background: '#fff', minHeight: 360}}>Bill is a cat.</div>*/}
+                        {this.state.content}
                     </Content>
                     <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
@@ -76,7 +97,6 @@ class AppLayout extends Component {
         );
     }
 }
-
 
 
 export default AppLayout;

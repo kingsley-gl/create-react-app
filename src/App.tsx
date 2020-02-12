@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
+import React, { Suspense} from "react";
+import {Router} from "dva/router";
 
-import './App.css';
-import AppLayout from "./layout/AppLayout";
+import RouteView from "./routes/RouteView";
+import RouteConfig from "./routes/RouteConfig";
 
 
-class App extends Component {
-  render() {
+
+const App = (props:any) => {
     return (
-        <div className="App">
-          <AppLayout />
-        </div>
+        <Router history={props.history}>
+            <Suspense fallback={<div>loading...</div>}>
+                <RouteView children={RouteConfig}/>
+            </Suspense>
+        </Router>
     );
-  }
-}
+};
 
 export default App;
